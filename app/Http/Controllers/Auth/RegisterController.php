@@ -78,7 +78,36 @@ class RegisterController extends Controller
     public function register(Request $request){
         if($request->isMethod('post')){
             $data = $request->input();
-
+            $validator=Validator::make($data,
+                [
+                'username'=>['required','string','between:4,12'],
+                'mail'=>['required','string','email','between:4,255','unique:users'],
+                'password'=>['required','string','alpha_num','between:4,12'],
+                'password-confirm'=>['required','string','alpha_num','between:4,12','same:password'],
+                ],[
+                'username.required'=>'ユーザー名は必須項目です。',
+                'username.string'=>'文字列ではありません。',
+                'username.between'=>'4文字以上、12文字以内で設定してください。',
+                'mail.required'=>'メールアドレスは必須項目です。',
+                'mail.string'=>'文字列ではありません。',
+                'mail.email'=>'メールアドレスではありません。',
+                'mail.between'=>'文字数が条件を満たしていません。',
+                'mail.unique'=>'登録済みのメールアドレスは使用できません。',
+                'password.required'=>'パスワードは必須項目です。',
+                'password.string'=>'文字列ではありません。',
+                'password.alpha_num'=>'英数字のみで設定してください。',
+                'password.between'=>'4文字以上、12文字以内で設定してください。',
+                'password-confirm.required'=>'パスワード確認は必須項目です。',
+                'password-confirm.string'=>'文字列ではありません。',
+                'password-confirm.alpha_num'=>'英数字のみで設定してください。',
+                'password-confirm.between'=>'4文字以上、12文字以内で設定してください。',
+                'password-confirm.same:password'=>'パスワードが一致しません。',
+            ]);
+        /*エラーがあったら*/
+            if($validator->fails()){
+                return redirect('register')->withErrors($validator);
+            }
+        /*エラーがなかったら*/
             $this->create($data);
             return redirect('added');
         }

@@ -5,6 +5,11 @@
 {!! Form::open() !!}
 
 <h2>新規ユーザー登録</h2>
+<ol>
+@foreach ($errors->all() as $error)
+  <li>{{$error}}</li>
+@endforeach
+</ol>
 
 {{ Form::label('ユーザー名') }}
 {{ Form::text('username',null,['class' => 'input']) }}

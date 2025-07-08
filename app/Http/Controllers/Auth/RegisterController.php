@@ -101,7 +101,7 @@ class RegisterController extends Controller
                 'password-confirm.string'=>'パスワードが文字列ではありません。',
                 'password-confirm.alpha_num'=>'パスワードは英数字のみで設定してください。',
                 'password-confirm.between'=>'パスワードは4文字以上、12文字以内で設定してください。',
-                'password-confirm.same:password'=>'パスワードが一致しません。',
+                'password-confirm.same'=>'パスワードが一致しません。',
             ]);
         /*エラーがあったら*/
             if($validator->fails()){

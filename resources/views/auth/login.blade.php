@@ -2,19 +2,20 @@
 
 @section('content')
 
-{!! Form::open() !!}
+<form method="POST" action="/login" class="form-container">
+    @csrf
 
-<p>DAWNSNSへようこそ</p>
+    <p>DAWNSNSへようこそ</p>
 
-{{ Form::label('e-mail') }}
-{{ Form::text('mail',null,['class' => 'input']) }}
-{{ Form::label('password') }}
-{{ Form::password('password',['class' => 'input']) }}
+    <label for="e-mail" class="form-label">E-mail</label>
+    <input class="input" name="mail" type="text">
 
-{{ Form::submit('ログイン') }}
+    <label for="password" class="form-label">Password</label>
+    <input class="input" name="password" type="password" value="" id="password">
 
-<p><a href="/register">新規ユーザーの方はこちら</a></p>
+    <input type="submit" value="ログイン" class="button-submit">
 
-{!! Form::close() !!}
+    <p><a href="/register">新規ユーザーの方はこちら</a></p>
+</form>
 
 @endsection

@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -22,12 +22,12 @@
 <body>
     <header>
         <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
+        <h1><a><img src="/images/main_logo.png"></a></h1>
             <div id="">
-                <div id="">
-                    <p>{{Auth::user()->username}}さん<img src="images/arrow.png"></p>
+                <div id="" class="head-username">
+                    <p>{{Auth::user()->username}}さん<img src="/storage/images/{{Auth::user()->images}}" alt="" class="user-icon"></p>
                 <div>
-                <ul>
+                <ul class="nav-menu">
                     <li><a href="/top">ホーム</a></li>
                     <li><a href="/profile">プロフィール</a></li>
                     <li><a href="/logout">ログアウト</a></li>
@@ -37,28 +37,29 @@
     </header>
     <div id="row">
         <div id="container">
+            <!--posts>index.blade.phpの内容を表示-->
             @yield('content')
         </div >
         <div id="side-bar">
             <div id="confirm">
                 <p>{{Auth::user()->username}}さんの</p>
-                <div>
+                <div class="inline-paragraphs">
                 <p>フォロー数</p>
-                <p>〇〇名</p>
+                <p>{{$countfollow}}名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
-                <div>
+                <p class="listbtn"><a href="/followList" class="btn">フォローリスト</a></p>
+                <div class="inline-paragraphs">
                 <p>フォロワー数</p>
-                <p>〇〇名</p>
+                <p>{{$countfollower}}名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <p class="listbtn"><a href="/followerList" class="btn">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <p class="searchbtn"><a href="/search" class="btn">ユーザー検索</a></p>
         </div>
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="js/style.js"></script>
 </body>
 </html>

@@ -2,7 +2,8 @@
 
 @section('content')
 
-{!! Form::open() !!}
+<form method="POST" action="/register" class="form-container">
+  @csrf
 
 <h2>新規ユーザー登録</h2>
 <ol>
@@ -11,23 +12,22 @@
 @endforeach
 </ol>
 
-{{ Form::label('ユーザー名') }}
-{{ Form::text('username',null,['class' => 'input']) }}
+<label for="ユーザー名" class="form-label">ユーザー名</label>
+<input class="input" name="username" type="text">
 
-{{ Form::label('メールアドレス') }}
-{{ Form::text('mail',null,['class' => 'input']) }}
+<label for="メールアドレス" class="form-label">メールアドレス</label>
+<input class="input" name="mail" type="text">
 
-{{ Form::label('パスワード') }}
-{{ Form::text('password',null,['class' => 'input']) }}
+<label for="パスワード" class="form-label">パスワード</label>
+<input class="input" name="password" type="text">
 
-{{ Form::label('パスワード確認') }}
-{{ Form::text('password-confirm',null,['class' => 'input']) }}
+<label for="パスワード確認" class="form-label">パスワード確認</label>
+<input class="input" name="password-confirm" type="text">
 
-{{ Form::submit('登録') }}
+<input type="submit" value="登録" class="button-submit">
 
 <p><a href="/login">ログイン画面へ戻る</a></p>
 
-{!! Form::close() !!}
-
+</form>
 
 @endsection
